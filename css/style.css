@@ -1,0 +1,94 @@
+body {
+  font-family: monospace;
+  background: url('../images/pattern-hills.svg') no-repeat;
+  background-color: hsl(235, 16%, 14%);
+  background-position: bottom;
+  background-size: 100%;
+  color: #fff;
+  height: 100vh;
+}
+a {
+  color: blue;
+}
+.container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 1440px;
+  height: calc(100vh - 15vh);
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  height: 30vh;
+}
+/*-- welcome --*/
+.main-title {
+  font-size: 3rem;
+}
+
+/*-- centered the panel --*/
+.panel-time {
+  align-items: center;
+  display: flex;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 0 auto;
+  position: relative;
+  width: calc(100% - 100px);
+}
+.panel-time__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 160px;
+  width: 160px;
+  margin: 0 10px;
+}
+
+/*-- counter number --*/
+
+.panel-time__text-up,
+.panel-time__text-down {
+  position: absolute;
+  text-align: center;
+  left: auto;
+  right: auto;
+  width: 160px;
+  margin: 0;
+}
+
+.panel-time__text-up {
+  font-size: 120px;
+  top: 10px;
+}
+.panel-time__text-down {
+  bottom: -30px;
+}
+
+/*-- number flat bg --*/
+.panel-time__flat-up,
+.panel-time__flat-down {
+  border-radius: 10px;
+  display: block;
+  flex: 1;
+  margin: 1px;
+}
+.panel-time__flat-up {
+  background: hsl(236deg 19% 32%);
+}
+.panel-time__flat-down {
+  background: hsl(236, 21%, 26%);
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.footer img {
+  margin: 20px 10px;
+}
