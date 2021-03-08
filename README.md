@@ -3,4 +3,4 @@
 使用easytimerjs作為倒數計時
 I used easytimerjs to countdown time.
 
-[id]: images/preview.png "Preview"
+<img src="images/preview.png"/>
