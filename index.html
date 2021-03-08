@@ -5,80 +5,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- displays site properly based on user's device -->
     <link rel="stylesheet" href="./css/style.css" />
+    <script src="./js/lib/jquery-3.6.0.min.js"></script>
+    <script src="./js/lib/easytimer.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/easytimer@1.1.1/src/easytimer.min.js"></script> -->
+
     <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
 
     <title>Frontend Mentor | Launch countdown timer</title>
-
-    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-    <style>
-      .attribution {
-        font-size: 11px;
-        text-align: center;
-      }
-      .attribution a {
-        color: hsl(228deg 79% 68%);
-      }
-    </style>
   </head>
   <body>
     <div class="container">
       <section class="panel-header">
-        <h2 class="main-title">We're launching soon</h2>
+        <h2 class="main-title">Easytimer js countdown</h2>
       </section>
 
       <section class="panel-time">
-        <div class="panel-time__item">
-          <h2 id="day" class="panel-time__text-up">00</h2>
-          <div class="panel-time__flat-up"></div>
-          <div class="panel-time__flat-down"></div>
-          <small class="panel-time__text-down">Days</small>
+        <div class="card">
+          <div class="card__up">
+            <div class="card__up__text days">00</div>
+          </div>
+          <div class="card__down">
+            <div class="shadow"></div>
+            <div class="card__down__text days">00</div>
+          </div>
+          <small class="card__description">Days</small>
         </div>
-        <div class="panel-time__item">
-          <h2 id="hour" class="panel-time__text-up">00</h2>
-          <div class="panel-time__flat-up"></div>
-          <div class="panel-time__flat-down"></div>
-          <small class="panel-time__text-down">Hours</small>
+        <div class="card">
+          <div class="card__up">
+            <div class="card__up__text hours">00</div>
+          </div>
+          <div class="card__down">
+            <div class="shadow"></div>
+            <div class="card__down__text hours">00</div>
+          </div>
+          <small class="card__description">Hours</small>
         </div>
-        <div class="panel-time__item">
-          <h2 id="min" class="panel-time__text-up">00</h2>
-          <div class="panel-time__flat-up"></div>
-          <div class="panel-time__flat-down"></div>
-          <small class="panel-time__text-down">Minutes</small>
+        <div class="card">
+          <div class="card__up">
+            <div class="card__up__text minutes">00</div>
+          </div>
+          <div class="card__down">
+            <div class="shadow"></div>
+            <div class="card__down__text minutes">00</div>
+          </div>
+          <small class="card__description">Minutes</small>
         </div>
-        <div class="panel-time__item">
-          <h2 id="sec" class="panel-time__text-up">00</h2>
-          <div class="panel-time__flat-up"></div>
-          <div class="panel-time__flat-down"></div>
-          <small class="panel-time__text-down">Seconds</small>
+        <div class="card">
+          <div class="card__up">
+            <div class="card__up__text seconds">00</div>
+          </div>
+          <div class="card__down">
+            <div class="shadow"></div>
+            <div class="card__down__text seconds">00</div>
+          </div>
+          <small class="card__description">Seconds</small>
         </div>
       </section>
     </div>
 
-    <footer class="footer"><img src="images/icon-facebook.svg" /><img src="images/icon-pinterest.svg" /><img src="images/icon-instagram.svg" /></footer>
+    <footer class="footer">
+      <img src="images/icon-facebook.svg" /><img src="images/icon-pinterest.svg" /><img src="images/icon-instagram.svg" />
+    </footer>
+    <div class="attribution">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. Coded by <a href="#">DAYDAY</a>.
+    </div>
 
     <script>
-      var id_d = document.querySelectorAll('#day')
-      var id_h = document.querySelectorAll('#hour')
-      var id_m = document.querySelectorAll('#min')
-      var id_s = document.querySelectorAll('#sec')
+      var timer = new easytimer.Timer();
 
-      var upgradeTime = 172801
-      var seconds = upgradeTime
-      function timer() {
-        var days = Math.floor(seconds / 24 / 60 / 60)
-        var hoursLeft = Math.floor(seconds - days * 86400)
-        var hours = Math.floor(hoursLeft / 3600)
-        var minutesLeft = Math.floor(hoursLeft - hours * 3600)
-        var minutes = Math.floor(minutesLeft / 60)
-        var remainingSeconds = seconds % 60
-        function pad(n) {
-          return n < 10 ? '0' + n : n
-        }
-        id_d.innerHTML = pad(days)
-      }
-      var countdownTimer = setInterval('timer()', 1000)
+      timer.start({ countdown: true, startValues: { days: 10 } });
+
+      console.log(timer.getTimeValues());
+      timer.addEventListener('secondsUpdated', function (e) {
+        $('.days').html(timer.getTimeValues().days);
+        $('.hours').html(timer.getTimeValues().hours);
+        $('.minutes').html(timer.getTimeValues().minutes);
+        $('.seconds').html(timer.getTimeValues().seconds);
+      });
     </script>
-
-    <div class="attribution">Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. Coded by <a href="#">DAYDAY</a>.</div>
   </body>
 </html>

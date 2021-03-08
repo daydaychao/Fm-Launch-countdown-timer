@@ -1,3 +1,7 @@
+:root {
+  --card-width: 142px;
+}
+
 body {
   font-family: monospace;
   background: url('../images/pattern-hills.svg') no-repeat;
@@ -15,8 +19,8 @@ a {
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  width: 1440px;
-  height: calc(100vh - 15vh);
+  max-width: 1440px;
+  height: calc(100vh - 30vh);
 }
 
 .panel-header {
@@ -33,55 +37,82 @@ a {
 .panel-time {
   align-items: center;
   display: flex;
-  display: flex;
   flex-direction: row;
   justify-content: center;
   margin: 0 auto;
   position: relative;
   width: calc(100% - 100px);
 }
-.panel-time__item {
-  position: relative;
-  display: flex;
+.card {
+  display: inline-flex;
   flex-direction: column;
-  height: 160px;
-  width: 160px;
+  height: 129px;
   margin: 0 10px;
+  position: relative;
+  width: var(--card-width);
 }
 
 /*-- counter number --*/
 
-.panel-time__text-up,
-.panel-time__text-down {
+.card__description {
   position: absolute;
   text-align: center;
   left: auto;
   right: auto;
-  width: 160px;
+  width: var(--card-width);
   margin: 0;
-}
-
-.panel-time__text-up {
-  font-size: 120px;
-  top: 10px;
-}
-.panel-time__text-down {
+  perspective: 200px;
   bottom: -30px;
 }
 
 /*-- number flat bg --*/
-.panel-time__flat-up,
-.panel-time__flat-down {
+.card__up,
+.card__down {
   border-radius: 10px;
-  display: block;
-  flex: 1;
-  margin: 1px;
+  font-size: 110px;
+  height: 50%;
+  margin: 0;
+  overflow: hidden;
+  position: relative;
 }
-.panel-time__flat-up {
+.card__up {
+  transform-origin: bottom;
   background: hsl(236deg 19% 32%);
+  top: 0;
+  z-index: 4;
 }
-.panel-time__flat-down {
+.card__up.active {
+  animation: turnUpToDown 0.5s 0.5s linear both;
+}
+.card__down {
+  transform-origin: top;
   background: hsl(236, 21%, 26%);
+  bottom: 0;
+}
+.card__down.active {
+  animation: turnDownToUp 0.5s 0.5s linear both;
+}
+/* line */
+.card__up:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 5;
+  width: 100%;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.card__up__text {
+  position: absolute;
+  top: 0;
+  left: 10px;
+}
+.card__down__text {
+  position: absolute;
+  bottom: 0;
+  left: 10px;
 }
 
 .footer {
@@ -91,4 +122,71 @@ a {
 }
 .footer img {
   margin: 20px 10px;
+}
+
+/* PLAY */
+
+@keyframes asd {
+  0% {
+    z-index: 2;
+  }
+  5% {
+    z-index: 4;
+  }
+  80% {
+    z-index: 10;
+  }
+}
+
+@keyframes turnDownToUp {
+  0% {
+    transform: rotateX(0deg);
+  }
+  100% {
+    transform: rotateX(90deg);
+  }
+}
+
+@keyframes turnUpToDown {
+  0% {
+    transform: rotateX(0deg);
+  }
+  100% {
+    transform: rotateX(-90deg);
+  }
+}
+
+@keyframes show {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes hide {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.shadow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.1) 60%, rgba(0, 0, 0, 0.2) 100%);
+  animation: show 0.5s linear both;
+}
+
+.attribution {
+  font-size: 11px;
+  text-align: center;
+}
+.attribution a {
+  color: hsl(228deg 79% 68%);
 }
